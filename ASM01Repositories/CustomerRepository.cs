@@ -1,0 +1,15 @@
+﻿using ASM01BusinessObjects.Models;
+using ASM01DataAccess;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ASM01Repositories
+{
+    public class CustomerRepository : ICustomerRepository
+    {
+        public Customer GetCustomerByEmail(string email) => CustomerDAO.Instance.GetCustomerByEmail(email);
+    }
+}

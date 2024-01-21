@@ -1,0 +1,95 @@
+﻿<Page x:Class="ASM01Wpf.CustomerManage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ASM01Wpf"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="900"
+      Title="CustomerManage">
+
+    <Grid>
+        <DockPanel VerticalAlignment="Top" Margin="10">
+            <Grid Width="700">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Stackpanel for label and textbox controls -->
+                <StackPanel Background="LawnGreen" Orientation="Vertical"
+                        HorizontalAlignment="Left" Width="700">
+
+                    <Label x:Name="lbTitle" Content="Customer Infomation" FontSize="22" FontWeight="Bold"/>
+
+                    <Label x:Name="lbCustomerId" Content="Customer ID" FontSize="16"/>
+
+                    <TextBox x:Name="txtCustomerId" HorizontalAlignment="Stretch" Height="25" FontSize="16"
+                         Text="{Binding Path=CustomerId, Mode=OneWay}" IsReadOnly="True" 
+                         DataContext="{Binding ElementName=lvCustomerId, 
+                         Path=SelectedItem}"/>
+
+                    <Label x:Name="lbCustomerName" Content="Customer Name" FontSize="16"/>
+                    <TextBox x:Name="txtCustomerName"  HorizontalAlignment="Stretch" Height="25" FontSize="16"
+                         Text="{Binding Path=CustomerName, Mode=TwoWay, 
+                            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+                    <Label x:Name="lbTelephone" Content="Telephone"  FontSize="16"/>
+                    <TextBox x:Name="txtTelephone"  HorizontalAlignment="Stretch" Height="25" FontSize="16"
+                         Text="{Binding Path=Telephone, Mode=TwoWay, 
+                            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <Label x:Name="lbEmail" Content="Email" FontSize="16"/>
+
+                    <TextBox x:Name="txtEmail"  HorizontalAlignment="Stretch" Height="25" FontSize="16"
+                         Text="{Binding Path=Email, Mode=TwoWay, 
+                            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <Label x:Name="lbCustomerBirthday" Content="Customer Birthday" FontSize="16"/>
+
+                    <DatePicker x:Name="dpCustomerBirthday"  HorizontalAlignment="Stretch" Height="25"
+                            Text="{Binding Path=CustomerBirthday, Mode=TwoWay, 
+                            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,318,0,24" Grid.RowSpan="2" Width="700">
+                    <Button x:Name="btnLoad" Margin="10" Width="150" Content="Load"/>
+                    <Button x:Name="btnInsert" Content="Insert" Margin="10" Width="150"/>
+                    <Button x:Name="btnUpdate" Content="Update" Margin="10" Width="150"/>
+                    <Button x:Name="btnDelete" Content="Delete" Margin="10" Width="150"/>
+                </StackPanel>
+
+                <!--ListView control-->
+
+                <ListView Grid.Row="2" Margin="0,48,0,40" Name="lvCustomers" Width="Auto" Height="Auto" Grid.RowSpan="2">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Customer ID" Width="90"
+                                        DisplayMemberBinding="{Binding Path=CustomerId}"/>
+                            <GridViewColumn Header="Telephone" Width="150"
+                                        DisplayMemberBinding="{Binding Path=CustomerName}"/>
+                            <GridViewColumn Header="Customer Name" Width="100"
+                                        DisplayMemberBinding="{Binding Path=Telephone}"/>
+                            <GridViewColumn Header="Email" Width="200"
+                                        DisplayMemberBinding="{Binding Path=Email}"/>
+                            <GridViewColumn Header="Birthday" Width="150"
+                                        DisplayMemberBinding="{Binding Path=CustomerBirthday}"/>
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+
+                <Button Grid.Row="3" x:Name="btnClose" Margin="10" 
+                HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Width="80" Content="Close"/>
+
+            </Grid>
+
+        </DockPanel>
+
+
+
+    </Grid>
+</Page>
